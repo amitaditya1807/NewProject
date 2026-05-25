@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/auth_db
     username: postgres
-    password: Amit1807@
+    password: ${DB_PASSWORD}
 
   jpa:
     open-in-view: false
@@ -20,6 +20,6 @@ spring:
         format_sql: true
   
 jwt:
-  secret: "this-is-a-demo-secret-key-for-learning-change-later-123456"
+  secret: ${JWT_SECRET}
   expiration-minutes: 15
   refresh-expiration-days: 7
