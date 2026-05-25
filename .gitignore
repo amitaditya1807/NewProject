@@ -1,0 +1,25 @@
+# Maven / Java build output
+target/
+*.class
+
+# Maven wrapper generated/log files
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+*.env
+application-local.yaml
+application-local.yml
+
+# Logs
+*.log
+logs/
