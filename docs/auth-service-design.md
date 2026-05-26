@@ -6,11 +6,11 @@ Auth service handles user registration, login, token generation, and authenticat
 ## Supported Login Methods - Version 1
 - LOCAL email/password login
 - GOOGLE login
+- GITHUB login
+
 
 ## Future Login Methods
-- Google
 - Facebook
-- GitHub
 
 ## Main Flow - Local Login
 1. User sends email and password.
@@ -111,6 +111,9 @@ Other Services
 - Google login
 - Google ID token verification
 - Google account linking by email
+- GitHub login
+- GitHub OAuth code exchange
+- GitHub account linking by email
 
 ## Current Auth Flow
 

@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/auth_db
     username: postgres
-    password: 
+    password: ${DB_PASSWORD}
 
   jpa:
     open-in-view: false
@@ -20,9 +20,14 @@ spring:
         format_sql: true
   
 jwt:
-  secret: 
+  secret: ${JWT_SECRET}
   expiration-minutes: 15
   refresh-expiration-days: 7
 
 google:
   client-id: ${GOOGLE_CLIENT_ID:}
+
+github:
+  client-id: ${GITHUB_CLIENT_ID:}
+  client-secret: ${GITHUB_CLIENT_SECRET:}
+  redirect-uri: ${GITHUB_REDIRECT_URI:http://127.0.0.1:5500/frontend/simple-pages/github-callback.html}

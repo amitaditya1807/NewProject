@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub Callback</title>
+</head>
+<body>
+  <h2>GitHub Callback</h2>
+  <p>Copy this code and send it to backend as providerToken:</p>
+  <pre id="code"></pre>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    document.getElementById("code").textContent = code || "No code found";
+    console.log("GitHub authorization code:", code);
+  </script>
+</body>
+</html>
