@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/auth_db
     username: postgres
-    password: ${DB_PASSWORD}
+    password: 
 
   jpa:
     open-in-view: false
@@ -20,6 +20,9 @@ spring:
         format_sql: true
   
 jwt:
-  secret: ${JWT_SECRET}
+  secret: 
   expiration-minutes: 15
   refresh-expiration-days: 7
+
+google:
+  client-id: ${GOOGLE_CLIENT_ID:}

@@ -5,6 +5,7 @@ Auth service handles user registration, login, token generation, and authenticat
 
 ## Supported Login Methods - Version 1
 - LOCAL email/password login
+- GOOGLE login
 
 ## Future Login Methods
 - Google
@@ -107,6 +108,9 @@ Other Services
 - Refresh token hashing
 - Refresh token validation
 - Logout with refresh token revocation
+- Google login
+- Google ID token verification
+- Google account linking by email
 
 ## Current Auth Flow
 
