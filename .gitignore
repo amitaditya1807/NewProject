@@ -19,6 +19,7 @@ Thumbs.db
 *.env
 application-local.yaml
 application-local.yml
+set-env.local.ps1
 
 # Logs
 *.log
