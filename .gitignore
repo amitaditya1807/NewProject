@@ -17,6 +17,7 @@ Thumbs.db
 # Environment / secrets
 .env
 *.env
+!.env.example
 application-local.yaml
 application-local.yml
 set-env.local.ps1
