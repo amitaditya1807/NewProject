@@ -20,7 +20,9 @@ import com.microservices.auth.dto.TokenValidationResponse;
 import com.microservices.auth.dto.RefreshTokenRequest;
 import com.microservices.auth.dto.LogoutRequest;
 import com.microservices.auth.model.RefreshToken;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class AuthService {
