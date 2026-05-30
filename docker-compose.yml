@@ -53,5 +53,20 @@ services:
       postgres:
         condition: service_healthy
 
+  api-gateway:
+    build:
+      context: ./api-gateway/rust
+    container_name: api-gateway
+    restart: unless-stopped
+    environment:
+      API_GATEWAY_PORT: 8080
+      AUTH_SERVICE_URL: http://auth-service:8081
+      USER_SERVICE_URL: http://user-service:8082
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - user-service
+
 volumes:
   postgres_data:

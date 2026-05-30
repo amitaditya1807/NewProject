@@ -36,6 +36,7 @@ This starts:
 - PostgreSQL on `localhost:55432`
 - Auth service on `http://localhost:8081`
 - User service on `http://localhost:8082`
+- API gateway on `http://localhost:8080`
 
 To run in the background:
 
@@ -221,6 +222,15 @@ Invoke-RestMethod `
   -Method Get `
   -Uri "http://localhost:8082/api/users/profile" `
   -Headers @{ Authorization = "Bearer $($auth.accessToken)" }
+```
+
+To test through the API gateway, use the same paths on port `8080`:
+
+```text
+POST http://localhost:8080/api/auth/register
+POST http://localhost:8080/api/auth/login
+POST http://localhost:8080/api/users/profile
+GET  http://localhost:8080/api/users/profile
 ```
 
 ## Useful Docs
