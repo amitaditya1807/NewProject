@@ -1,0 +1,140 @@
+<main class="page">
+  <header class="topbar">
+    <div>
+      <strong>NewProject</strong>
+      <span>Account</span>
+    </div>
+    <button type="button" class="secondary" (click)="checkGateway()" [disabled]="state === 'busy'">
+      Check API
+    </button>
+  </header>
+
+  <section class="message" [class.success]="state === 'success'" [class.error]="state === 'error'">
+    {{ state === 'busy' ? 'Please wait...' : message }}
+  </section>
+
+  <section class="auth-layout" *ngIf="!isLoggedIn; else profileScreen">
+    <article class="intro">
+      <p class="eyebrow">Profile Service</p>
+      <h1>Manage your account from one place.</h1>
+      <p>Login, create an account, and update profile data through the API gateway.</p>
+    </article>
+
+    <article class="card auth-card">
+      <div class="card-title">
+        <h2>{{ mode === 'login' ? 'Login' : 'Create account' }}</h2>
+        <p>{{ mode === 'login' ? 'Use your saved account.' : 'Create a local account.' }}</p>
+      </div>
+
+      <div class="provider-grid">
+        <button type="button" class="provider-button" (click)="loginWithGoogle()" [disabled]="state === 'busy'">
+          <span class="provider-icon google">G</span>
+          Google
+        </button>
+        <button type="button" class="provider-button" (click)="loginWithGitHub()" [disabled]="state === 'busy'">
+          <span class="provider-icon github">GH</span>
+          GitHub
+        </button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <div class="mode-tabs">
+        <button type="button" [class.active]="mode === 'login'" (click)="setMode('login')">Login</button>
+        <button type="button" [class.active]="mode === 'register'" (click)="setMode('register')">Create</button>
+      </div>
+
+      <form *ngIf="mode === 'login'; else registerFormTpl" (ngSubmit)="login()">
+        <label>
+          Email
+          <input type="email" name="loginEmail" [(ngModel)]="loginForm.email" autocomplete="email" required />
+        </label>
+        <label>
+          Password
+          <input type="password" name="loginPassword" [(ngModel)]="loginForm.password" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="primary" [disabled]="state === 'busy'">Continue</button>
+      </form>
+
+      <ng-template #registerFormTpl>
+        <form (ngSubmit)="register()">
+          <label>
+            Full name
+            <input type="text" name="displayName" [(ngModel)]="registerForm.displayName" autocomplete="name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="registerEmail" [(ngModel)]="registerForm.email" autocomplete="email" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="registerPassword" [(ngModel)]="registerForm.password" autocomplete="new-password" required />
+          </label>
+          <button type="submit" class="primary" [disabled]="state === 'busy'">Create account</button>
+        </form>
+      </ng-template>
+    </article>
+  </section>
+
+  <ng-template #profileScreen>
+    <section class="profile-layout">
+      <article class="card profile-summary">
+        <img [src]="avatarUrl" [alt]="displayName" />
+        <h1>{{ displayName }}</h1>
+        <p>{{ profile?.bio || profileForm.bio || 'Your profile is ready.' }}</p>
+        <div class="profile-meta">
+          <span>{{ profile?.phoneNumber || profileForm.phoneNumber || 'Phone not set' }}</span>
+          <span>{{ profile?.dateOfBirth || profileForm.dateOfBirth || 'Birth date not set' }}</span>
+        </div>
+        <div class="profile-actions">
+          <button type="button" class="secondary" (click)="loadProfile()" [disabled]="state === 'busy'">Refresh</button>
+          <button type="button" class="secondary" (click)="logout()">Logout</button>
+        </div>
+      </article>
+
+      <article class="card edit-card">
+        <div class="card-title">
+          <h2>Edit profile</h2>
+          <p>Save changes to user-service.</p>
+        </div>
+
+        <form (ngSubmit)="saveProfile()">
+          <div class="form-grid">
+            <label>
+              Full name
+              <input type="text" name="fullName" [(ngModel)]="profileForm.fullName" required />
+            </label>
+            <label>
+              Phone
+              <input type="text" name="phoneNumber" [(ngModel)]="profileForm.phoneNumber" />
+            </label>
+            <label>
+              Birth date
+              <input type="date" name="dateOfBirth" [(ngModel)]="profileForm.dateOfBirth" />
+            </label>
+            <label>
+              Avatar URL
+              <input type="url" name="avatarUrl" [(ngModel)]="profileForm.avatarUrl" />
+            </label>
+          </div>
+          <label>
+            Bio
+            <textarea name="bio" rows="4" [(ngModel)]="profileForm.bio"></textarea>
+          </label>
+          <button type="submit" class="primary" [disabled]="state === 'busy'">Save profile</button>
+        </form>
+      </article>
+    </section>
+  </ng-template>
+
+  <section class="console" [class.success]="state === 'success'" [class.error]="state === 'error'">
+    <header>
+      <div>
+        <span class="dot"></span>
+        <strong>{{ responseTitle }}</strong>
+      </div>
+      <small>{{ state }}</small>
+    </header>
+    <pre>{{ responseBody }}</pre>
+  </section>
+</main>

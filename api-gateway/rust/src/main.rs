@@ -8,6 +8,7 @@ use axum::{
 };
 use reqwest::Client;
 use std::{collections::HashMap, env};
+use tower_http::cors::CorsLayer;
 
 #[derive(Clone)]
 struct AppState {
@@ -32,6 +33,7 @@ async fn main() {
         .route("/health", get(health))
         .route("/api/auth/{*path}", any(proxy_auth))
         .route("/api/users/{*path}", any(proxy_users))
+        .layer(CorsLayer::permissive())
         .with_state(state.clone());
 
     let bind_address = format!("0.0.0.0:{port}");

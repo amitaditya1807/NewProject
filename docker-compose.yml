@@ -31,7 +31,7 @@ services:
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
       GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
       GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
-      GITHUB_REDIRECT_URI: ${GITHUB_REDIRECT_URI:-http://127.0.0.1:5500/frontend/simple-pages/github-callback.html}
+      GITHUB_REDIRECT_URI: ${GITHUB_REDIRECT_URI:-http://127.0.0.1:4200}
     ports:
       - "8081:8081"
     depends_on:
